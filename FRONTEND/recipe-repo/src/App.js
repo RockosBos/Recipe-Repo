@@ -9,6 +9,7 @@ import Navbar from "./shared/Navigation/NavBar";
 import Home from "./pages/Home";
 import User from "./pages/User";
 import Recipe from "./pages/Recipe";
+import Login from "./pages/Login";
 
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
         <Router>
             <Navbar />
             <Routes>
-                <Route path="./" element={<Home />} />
-                <Route path="./recipes" element={<Recipe />}/>
-                <Route path="./Users" element={<User />}/>
+                <Route path="/" element={<Home />} />
+                <Route path="/recipes" element={<Recipe />}/>
+                <Route path="/Users" element={<User />}/>
+				<Route path="/login" element={<Login />}/>
             </Routes>
         </Router>
     );
