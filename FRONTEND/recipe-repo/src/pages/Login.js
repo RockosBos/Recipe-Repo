@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
+import './Login.css';
 
 export default class Login extends Component {
   render() {
 	return (
-		<div>
+		<div className="login-page">
 			<form>
 				<label>
-					<h1>Username:</h1>
+					<h1>Username</h1>
 					<input type="text" />
 				</label>
 				<label>
