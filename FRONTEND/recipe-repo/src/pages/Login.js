@@ -1,18 +1,47 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import './Login.css';
 
-export default class Login extends Component {
-  render() {
+Login.PropTypes = {
+	setToken: PropTypes.func.isRequired
+}
+
+async function loginUser(credentials) {
+	return fetch('http://localhost:8080/login', {
+		method:'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(credentials)
+	}).then(
+		data => data.json()
+	)
+}
+
+export default function Login({setToken}) {
+	const [username, setUserName] = useState();
+  	const [password, setPassword] = useState();
+
+	const handleSubmit = async e => {
+		e.preventDefault();
+		const token = await loginUser({
+			username,
+			password
+		});
+		setToken(token);
+	}
+
 	return (
 		<div className="login-page">
-			<form>
+			<form onSubmit={handleSubmit}>
 				<label>
 					<h1>Username</h1>
-					<input type="text" />
+					<input type="text" onChange={e => setUserName(e.target.value)}/>
 				</label>
 				<label>
 					<h1>Password</h1>
-					<input type="password" />
+					<input type="password" onChange={e => setPassword(e.target.value)}/>
 				</label>
 				<div>
 					<button type="submit">Submit</button>
@@ -20,5 +49,4 @@ export default class Login extends Component {
 			</form>
 		</div>
 	)
-  }
 }
