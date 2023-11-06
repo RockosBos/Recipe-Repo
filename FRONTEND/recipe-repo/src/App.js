@@ -5,6 +5,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "./shared/Navigation/NavBar";
 import Home from "./pages/Home";
 import User from "./pages/User";
@@ -13,6 +14,12 @@ import Login from "./pages/Login";
 
 
 function App() {
+    /*const [token, setToken] = useState();
+
+    if(!token) {
+      return <Login setToken={setToken} />
+    }*/
+
     return (
         <Router>
             <Navbar />
