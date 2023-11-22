@@ -1,36 +1,65 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
+import Recipe from '../pages/Recipe';
+import "./Recipes.css"
 
 export default function Recipes() {
   
 	const Recipe = {
-		Ingredients: String,
-		Directions: String,
-		creatorID: String,
-		PostDate: Date,
+		email: String,
+		recipeTitle: String,
+		recipeDescription: String
 	};
 
 	const DUMMY_RECIPES = [
 		{
-			Ingredients: "Carrots, Cheese, Milk",
-			Directions: "Mix together for 5 minutes",
-			creatorID: 123,
-			PostDate: "11-06-2023",
+			email: "TestEmail@email.com",
+			recipeTitle: "#1 Recipe",
+			recipeDescription: "This is where I would put my recipe description!",
 		},
 		{
-			Ingredients: "Oreo, Cake Mix, Frosting",
-			Directions: "Bake for 30 Minutes",
-			creatorID: 176,
-			PostDate: "11-05-2023",
+			email: "AnotherTestEmail@email.com",
+			recipeTitle: "The other DUMMY recipe",
+			recipeDescription: "This is where I would put my other recipe description!",
 		}
 	];
+
+	//const [result, setResult] = useState<Recipe[]>([]);
+	//const [recipeData, setRecipeData] = useState<Recipe>();
+
+	useEffect(() => {
+		const api = async () => {
+			const data = await fetch("", {method:"GET"})
+			const json = await data.json();
+			console.log(json);
+			setResult(json);
+		}
+	});
+
+	async function openEditRecipeModal(event, recipe){
+		event.preventDefault();
+
+	}
+
+	async function deleteRecipe(event){
+		event.preventDefault();
+		//const deleteId = event.currentTarget.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[0].nodeValue;
+		
+	}
+
 
 	const loadedRecipes = DUMMY_RECIPES.map(Recipe => {
 		return(
 			<div className='card'>
-				<p>{Recipe.Ingredients}</p>
-				<p>{Recipe.PostDate}</p>
-				<p>{Recipe.creatorID}</p>
-				<p>{Recipe.PostDate}</p>
+				<div className='card-title'>
+					<p>{Recipe.recipeTitle}</p>
+				</div>
+				<div className='card-content'>
+					<p>{Recipe.recipeDescription}</p>
+				</div>
+				<div className='card-buttons'>
+					<button className='edit-button' onClick={{}}>Edit</button>
+					<button className='delete-button' onClick={{deleteRecipe}}>Delete</button>
+				</div>
 			</div>
 		);
 	});

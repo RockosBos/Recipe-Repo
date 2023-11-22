@@ -1,0 +1,13 @@
+.recipes{
+	display: flex;
+  	justify-content: center;
+}
+
+.create-recipe-button{
+	background-color: lightgreen;
+	border-radius: 5px;
+}
+.create-recipe-button-div{
+	display: flex;
+	justify-content: center;
+}
