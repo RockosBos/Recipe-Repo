@@ -133,6 +133,48 @@ router.post("/recipe", auth, (req, res) => {
     });
 });
 
+router.get("/recipe/get", auth, (req, res) => {
+  const userData = req.user;
+  console.log(userData);
+  console.log(req.body);
+  UserRecipe
+  .find({email : userData.email})
+  .then((result) => {
+    console.log(result)
+    res.json({
+          userRecipe: result
+    });
+  })
+   
+    .catch((e) => {
+      res.json({
+        message: e,
+      });
+    });
+});
+
+
+
+router.delete("/recipe/delete", auth, (req, res) => {
+  const userData = req.user;
+  console.log(userData);
+  console.log(req.body);
+  UserRecipe
+  .deleteOne({recipeTitle : req.body.recipeTitle})
+  .then((result) => {
+    console.log(result)
+    res.json({
+          userRecipe: result
+    });
+  })
+   
+    .catch((e) => {
+      res.json({
+        message: e,
+      });
+    });
+});
+
 router.get("/profile", function (req, res, next) {
   console.log("profile");
   User.findOne({ unique_id: req.session.userId }, function (err, data) {
