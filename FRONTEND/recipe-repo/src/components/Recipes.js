@@ -57,8 +57,8 @@ export default function Recipes() {
 					<p>{Recipe.recipeDescription}</p>
 				</div>
 				<div className='card-buttons'>
-					<button className='edit-button' onClick={{}}>Edit</button>
-					<button className='delete-button' onClick={{deleteRecipe}}>Delete</button>
+					<button className='edit-button' onClick={() => {}}>Edit</button>
+					<button className='delete-button' onClick={() => {}}>Delete</button>
 				</div>
 			</div>
 		);

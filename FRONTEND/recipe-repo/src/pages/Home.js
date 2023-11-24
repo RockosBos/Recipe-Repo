@@ -1,48 +1,51 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 
 import { signupService } from '../components/Services/signupService';
 import { loginService } from '../components/Services/loginService';
 
 import "./Home.css"
 
-const loginSubmit = async (e) => {
-	e.preventDefault();
+export default function Home({setToken}){
 
-	const target = e.target;
-
-	const loginData = {
-		email: target.email.value,
-		passWord: target.password.value
-	}
-
-	await loginService(loginData).then(
-		(res) => {
-			console.log(res);
-		}
-	)
-}
-
-const signupSubmit = async (e) => {
-	e.preventDefault();
+	const loginSubmit = async (e) => {
+		e.preventDefault();
 	
-	const target = e.target;
-
-	const signupData = {
-		firstName: target.fName.value,
-		lastName: target.lName.value,
-		email: target.email.value,
-		passWord: target.password.value,
-		contactNumber: target.number.value
+		const target = e.target;
+	
+		const loginData = {
+			email: target.email.value,
+			passWord: target.password.value
+		}
+	
+		await loginService(loginData)
+			.then(res => res.json())
+			.then(data => {
+				setToken(data.token);
+				//console.log(token);
+			});
+		
 	}
 	
-	await signupService(signupData).then(
-		(res) => {
-			console.log(res);
+	const signupSubmit = async (e) => {
+		e.preventDefault();
+		
+		const target = e.target;
+	
+		const signupData = {
+			firstName: target.fName.value,
+			lastName: target.lName.value,
+			email: target.email.value,
+			passWord: target.password.value,
+			contactNumber: target.number.value
 		}
-	)
-}
-
-export default function Home(){
+		
+		await signupService(signupData).then(
+			(res) => {
+				console.log(res);
+			}
+		)
+	}
+	
 	return (
 		<div>
 			<h1 className='header'>Please Log in or sign up</h1>

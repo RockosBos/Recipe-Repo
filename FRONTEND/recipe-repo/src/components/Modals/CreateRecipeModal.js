@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import {Recipe} from '../Models/Recipe'
 import "./CreateRecipeModal.css"
+import { createRecipeService } from '../Services/createRecipeService'
 
 const ModalData = {
 	isOpen: Boolean,
@@ -7,11 +9,24 @@ const ModalData = {
 
 }
 
-const onSubmit = async (event) => {
-	event.preventDefault();
-}
-
 const CreateRecipeModal = (props) => {
+
+	const onSubmit = async (e) => {
+		e.preventDefault();
+
+		const target = e.target;
+		const token = props.token;
+
+		Recipe.recipeTitle = target.title.value;
+		Recipe.recipeDescription = target.desc.value;
+
+		await createRecipeService({Recipe, token}).then(
+			(res) => {
+				console.log(res);
+			}
+		)
+
+	}
 
 	return(
 		<>
