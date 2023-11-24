@@ -1,12 +1,96 @@
 import React, { Component } from 'react'
 
-export default class Home extends Component {
-  render() {
-    return (
-      <div>
-		<h1>Welcome to Recipe Repo!</h1>
-		<h2>Please view Recipes</h2>
-	  </div>
-    )
-  }
+import { signupService } from '../components/Services/signupService';
+import { loginService } from '../components/Services/loginService';
+
+import "./Home.css"
+
+const loginSubmit = async (e) => {
+	e.preventDefault();
+
+	const target = e.target;
+
+	const loginData = {
+		email: target.email.value,
+		passWord: target.password.value
+	}
+
+	await loginService(loginData).then(
+		(res) => {
+			console.log(res);
+		}
+	)
+}
+
+const signupSubmit = async (e) => {
+	e.preventDefault();
+	
+	const target = e.target;
+
+	const signupData = {
+		firstName: target.fName.value,
+		lastName: target.lName.value,
+		email: target.email.value,
+		passWord: target.password.value,
+		contactNumber: target.number.value
+	}
+	
+	await signupService(signupData).then(
+		(res) => {
+			console.log(res);
+		}
+	)
+}
+
+export default function Home(){
+	return (
+		<div>
+			<h1 className='header'>Please Log in or sign up</h1>
+			<div className='card-parent'>
+				<div className='login-card'>
+					<form className='login-form' onSubmit={loginSubmit}>
+						<div className="field">
+							<label htmlFor="email">Email:</label>
+							<input id="email" />
+						</div>
+						<div className="field">
+							<label htmlFor="password">Password:</label>
+							<input type="password" id="password" />
+						</div>
+						<div className='button'>
+							<button>Login</button>
+						</div>
+					</form>
+				</div>
+				<div className='signup-card'>
+					<form className='signup-form' onSubmit={signupSubmit}>
+					<div className="field">
+							<label htmlFor="fName">First Name:</label>
+							<input id="fName" />
+						</div>
+						<div className="field">
+							<label htmlFor="lName">Last Name:</label>
+							<input id="lName" />
+						</div>
+						<div className="field">
+							<label htmlFor="email">New Email:</label>
+							<input id="email" />
+						</div>
+						<div className="field">
+							<label htmlFor="password">New Password:</label>
+							<input type="password" id="password" />
+						</div>
+						<div className="field">
+							<label htmlFor="number">Contact Number:</label>
+							<input id="number" />
+						</div>
+						<div className='button'>
+							<button >Signup</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	  )
 }
