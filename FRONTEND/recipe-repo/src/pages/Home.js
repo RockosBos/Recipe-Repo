@@ -7,6 +7,8 @@ import "./Home.css"
 
 export default function Home({setToken}){
 
+	const [loggedIn, setLoggedIn] = useState(false);
+
 	const loginSubmit = async (e) => {
 		e.preventDefault();
 	
@@ -20,8 +22,8 @@ export default function Home({setToken}){
 		await loginService(loginData)
 			.then(res => res.json())
 			.then(data => {
+				setLoggedIn(true);
 				setToken(data.token);
-				//console.log(token);
 			});
 		
 	}
@@ -41,59 +43,70 @@ export default function Home({setToken}){
 		
 		await signupService(signupData).then(
 			(res) => {
-				console.log(res);
+				if(res.ok){
+					alert("Account Created Successfully");
+				}
 			}
 		)
 	}
 	
 	return (
-		<div>
-			<h1 className='header'>Please Log in or sign up</h1>
-			<div className='card-parent'>
-				<div className='login-card'>
-					<form className='login-form' onSubmit={loginSubmit}>
-						<div className="field">
-							<label htmlFor="email">Email:</label>
-							<input id="email" />
-						</div>
-						<div className="field">
-							<label htmlFor="password">Password:</label>
-							<input type="password" id="password" />
-						</div>
-						<div className='button'>
-							<button>Login</button>
-						</div>
-					</form>
+		<>
+			{loggedIn && (
+				<div className='loggedInMessage'>
+					<h1>You are logged in!</h1>
 				</div>
-				<div className='signup-card'>
-					<form className='signup-form' onSubmit={signupSubmit}>
-					<div className="field">
-							<label htmlFor="fName">First Name:</label>
-							<input id="fName" />
-						</div>
+			)}
+			{!loggedIn && (
+				<div className='login'>
+				<h1 className='header'>Please Log in or sign up</h1>
+				<div className='card-parent'>
+					<div className='login-card'>
+						<form className='login-form' onSubmit={loginSubmit}>
+							<div className="field">
+								<label htmlFor="email">Email:</label>
+								<input id="email" />
+							</div>
+							<div className="field">
+								<label htmlFor="password">Password:</label>
+								<input type="password" id="password" />
+							</div>
+							<div className='button'>
+								<button>Login</button>
+							</div>
+						</form>
+					</div>
+					<div className='signup-card'>
+						<form className='signup-form' onSubmit={signupSubmit}>
 						<div className="field">
-							<label htmlFor="lName">Last Name:</label>
-							<input id="lName" />
-						</div>
-						<div className="field">
-							<label htmlFor="email">New Email:</label>
-							<input id="email" />
-						</div>
-						<div className="field">
-							<label htmlFor="password">New Password:</label>
-							<input type="password" id="password" />
-						</div>
-						<div className="field">
-							<label htmlFor="number">Contact Number:</label>
-							<input id="number" />
-						</div>
-						<div className='button'>
-							<button >Signup</button>
-						</div>
-					</form>
+								<label htmlFor="fName">First Name:</label>
+								<input id="fName" />
+							</div>
+							<div className="field">
+								<label htmlFor="lName">Last Name:</label>
+								<input id="lName" />
+							</div>
+							<div className="field">
+								<label htmlFor="email">New Email:</label>
+								<input id="email" />
+							</div>
+							<div className="field">
+								<label htmlFor="password">New Password:</label>
+								<input type="password" id="password" />
+							</div>
+							<div className="field">
+								<label htmlFor="number">Contact Number:</label>
+								<input id="number" />
+							</div>
+							<div className='button'>
+								<button >Signup</button>
+							</div>
+						</form>
+					</div>
 				</div>
+				
 			</div>
-			
-		</div>
+			)}
+		</>
 	  )
 }

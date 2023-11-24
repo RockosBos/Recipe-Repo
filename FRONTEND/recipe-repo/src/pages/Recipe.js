@@ -16,7 +16,6 @@ export default function Recipe({token}){
 			<div className='recipes'>
 				<Recipes />
 			</div>
-			<p>{token}</p>
 		</div>
 	)
 }

@@ -22,7 +22,10 @@ const CreateRecipeModal = (props) => {
 
 		await createRecipeService({Recipe, token}).then(
 			(res) => {
-				console.log(res);
+				if(res.ok){
+					alert("Recipe Created Successfully");
+					props.toggle();
+				}
 			}
 		)
 
