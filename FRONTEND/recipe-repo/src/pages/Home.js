@@ -45,6 +45,7 @@ export default function Home({setToken}){
 			(res) => {
 				if(res.ok){
 					alert("Account Created Successfully");
+					loginSubmit(signupData);
 				}
 			}
 		)

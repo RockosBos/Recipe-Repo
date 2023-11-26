@@ -14,7 +14,7 @@ export default function Recipe({token}){
 			</div>
 			<CreateRecipeModal token={token} isOpen={isOpen} toggle={toggle}/>
 			<div className='recipes'>
-				<Recipes />
+				<Recipes token={token}/>
 			</div>
 		</div>
 	)
