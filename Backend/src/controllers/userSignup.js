@@ -109,7 +109,80 @@ catch (err) {
   }}
 );
 
+router.get("/recipe/get", auth, (req, res) => {
+  const userData = req.user;
+  console.log(userData);
+  console.log(req.body);
+  UserRecipe
+  .find({email : userData.email})
+  .then((result) => {
+    console.log(result)
+    res.json({
+          userRecipe: result
+    });
+  })
+   
+    .catch((e) => {
+      res.json({
+        message: e,
+      });
+    });
+});
 
+
+router.get("/mutualContact/get", auth, (req, res) => {
+  const userData = req.user;
+  console.log("userData", userData);
+  console.log(req.body);
+  MutualContact
+  .findOne({email : userData.email})
+  .then(async (result) => {
+    console.log("resu",result);
+   // console.log(result[0].mutualContacts);
+    let responseDTO = [];
+    
+    for(let data of result.mutualContacts){
+          console.log("data", data);
+          let listofContacts = {};
+          const userExist = await User.findOne({ email: 'raja11aa2@gmail.com' });
+          listofContacts.email = data.email;
+          listofContacts.fullName = userExist.firstName + userExist.lastName;
+
+          responseDTO.push(listofContacts);
+    }
+    res.json({
+          userMutualContact: responseDTO
+    });
+  })
+   
+    .catch((e) => {
+      res.json({
+        message: e,
+      });
+    });
+});
+
+
+
+router.delete("/recipe/delete", auth, (req, res) => {
+  const userData = req.user;
+  console.log(userData);
+  console.log(req.body);
+  UserRecipe
+  .deleteOne({recipeTitle : req.body.recipeTitle})
+  .then((result) => {
+    console.log(result)
+    res.json({
+          userRecipe: result
+    });
+  })
+   
+    .catch((e) => {
+      res.json({
+        message: e,
+      });
+    });
+});
 
 router.post("/recipe", auth, (req, res) => {
   const userData = req.user;
@@ -134,6 +207,31 @@ router.post("/recipe", auth, (req, res) => {
     });
 });
 
+
+
+router.post("/recipe/share", auth, (req, res) => {
+  const userData = req.user;
+  console.log(userData);
+  console.log(req.body);
+  let userRecipe = new UserRecipe({
+    email: req.body.sharingEmail,
+    recipeTitle: req.body.recipeTitle,
+    recipeDescription: req.body.recipeDescription,
+  });
+  userRecipe
+    .save()
+    .then((result) => {
+      res.json({
+        message: "Recipe shared successfully",
+      });
+    })
+    .catch((e) => {
+      res.json({
+        message: e,
+      });
+    });
+});
+
 router.get("/profile", function (req, res, next) {
   console.log("profile");
   User.findOne({ unique_id: req.session.userId }, function (err, data) {
@@ -147,6 +245,10 @@ router.get("/profile", function (req, res, next) {
     }
   });
 });
+
+
+
+
 
 router.get("/logout", function (req, res, next) {
   console.log("logout");
