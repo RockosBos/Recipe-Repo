@@ -39,7 +39,7 @@ const EditRecipeModal = (props) => {
 							</div>
 							<div className="field">
 								<label htmlFor="desc">New Recipe Description:</label>
-								<textarea name="desc" id="desc" defaultValue={props.data.recipeDescription}/>
+								<textarea name="desc" id="desc" rows="10" cols="50" defaultValue={props.data.recipeDescription}/>
 							</div>
 							<div>
 								<button>Update</button>

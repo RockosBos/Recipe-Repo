@@ -4,6 +4,8 @@ import EditRecipeModal from './Modals/EditRecipeModal';
 import DeleteRecipeModal from "./Modals/DeleteRecipeModal"
 import useEditRecipeModal from './Hooks/useEditRecipeModal';
 import useDeleteRecipeModal from './Hooks/useDeleteRecipeModal';
+import useShareRecipeModal from './Hooks/useShareRecipeModal';
+import ShareRecipeModal from './Modals/ShareRecipeModal';
 import "./Recipes.css"
 
 export default function Recipes(props) {
@@ -23,6 +25,7 @@ export default function Recipes(props) {
 	const [recipeData, setRecipeData] = useState(Recipe);
 
 	const {isOpen, toggle} = useEditRecipeModal();
+	const {shareIsOpen, shareToggle} = useShareRecipeModal();
 	const {deleteIsOpen, deleteToggle} = useDeleteRecipeModal();
 
 	useEffect(() => {
@@ -44,6 +47,11 @@ export default function Recipes(props) {
 		deleteToggle();
 	}
 
+	async function openShareRecipeModal(props){
+		setRecipeData(props);
+		shareToggle();
+	}
+
 
 	const loadedRecipes = DUMMY_RECIPES.map(Recipe => {
 		return(
@@ -58,6 +66,7 @@ export default function Recipes(props) {
 					</div>
 					<div className='card-buttons'>
 						<button className='edit-button' onClick={() => {openEditRecipeModal(Recipe)}}>Edit</button>
+						<button className='share-button' onClick={() => {openShareRecipeModal(Recipe)}}>Share</button>
 						<button className='delete-button' onClick={() => {openDeleteRecipeModal(Recipe)}}>Delete</button>
 					</div>
 				</div>
@@ -69,6 +78,7 @@ export default function Recipes(props) {
 	  	<div>
 			<div className='modals'>
 				<EditRecipeModal token={props.token} isOpen={isOpen} toggle={toggle} data={recipeData}/>
+				<ShareRecipeModal token={props.token} isOpen={shareIsOpen} toggle={shareToggle} data={recipeData}/>
 				<DeleteRecipeModal token={props.token} isOpen={deleteIsOpen} toggle={deleteToggle} data={recipeData}/>
 			</div>
 			{loadedRecipes}

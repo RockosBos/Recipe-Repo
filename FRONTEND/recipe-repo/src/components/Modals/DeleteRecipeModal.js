@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Recipe} from '../Models/Recipe'
-import "./CreateRecipeModal.css"
+
 import { createRecipeService } from '../Services/createRecipeService'
 
 const ModalData = {
@@ -47,4 +47,4 @@ const DeleteRecipeModal = (props) => {
 	)
 }
 
-export default CreateRecipeModal;
+export default DeleteRecipeModal;

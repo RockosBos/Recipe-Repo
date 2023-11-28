@@ -45,7 +45,7 @@ const CreateRecipeModal = (props) => {
 							</div>
 							<div className="field">
 								<label htmlFor="desc">Recipe Description:</label>
-								<textarea name="desc" id="desc"/>
+								<textarea name="desc" id="desc" rows="10" cols="50"/>
 							</div>
 							<div>
 								<button>Create</button>
