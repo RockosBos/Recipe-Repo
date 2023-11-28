@@ -1,6 +1,7 @@
 .recipes{
 	display: flex;
   	justify-content: center;
+	width: 100%;
 }
 
 .create-recipe-button{

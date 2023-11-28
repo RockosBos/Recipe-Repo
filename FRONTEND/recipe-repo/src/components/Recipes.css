@@ -9,6 +9,7 @@
 	flex-direction: column;
 	background-color: silver;
 	margin-bottom: 5%;
+	width: 100%;
 }
 
 .card-title{
