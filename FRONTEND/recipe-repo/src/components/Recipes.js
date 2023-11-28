@@ -21,7 +21,7 @@ export default function Recipes(props) {
 		}
 	];
 
-	//const [result, setResult] = useState<Recipe[]>([]);
+	const [result, setResult] = useState(DUMMY_RECIPES);
 	const [recipeData, setRecipeData] = useState(Recipe);
 
 	const {isOpen, toggle} = useEditRecipeModal();
@@ -30,12 +30,20 @@ export default function Recipes(props) {
 
 	useEffect(() => {
 		const api = async () => {
-			const data = await fetch("", {method:"GET"})
+			const data = await fetch("http://localhost:3000/raja/recipe/get", 
+			{
+				method: 'GET',
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": "Bearer " + props.token,
+				},
+			  },
+			)
 			const json = await data.json();
-			console.log(json);
-			setResult(json);
+			setResult(json.userRecipe);
 		}
-	});
+		api();
+	}, []);
 
 	async function openEditRecipeModal(props){
 		setRecipeData(props);
@@ -53,7 +61,7 @@ export default function Recipes(props) {
 	}
 
 
-	const loadedRecipes = DUMMY_RECIPES.map(Recipe => {
+	const loadedRecipes = result.map(Recipe => {
 		return(
 			<>
 				
