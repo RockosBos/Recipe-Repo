@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cors = require('cors');
 var bodyParser = require('body-parser');
 require("dotenv").config();
 
@@ -17,14 +18,17 @@ db.once('open', function () {
 });
 
 const app = express();
-app.use(morgan('dev'))
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(bodyParser.json())
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
-app.use(express.json())
+app.use(cors({
+	origin: "*"
+}));
+
+app.use(express.json());
 var index = require('./src/controllers/userSignup');
 app.use('/raja', index);
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,  ()=> {
   console.log('Server is started on port',  PORT);

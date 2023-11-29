@@ -20,14 +20,17 @@ function App() {
       return <Login setToken={setToken} />
     }*/
 
+	const [token, setToken] = useState("");
+
     return (
+
         <Router>
             <Navbar />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/recipes" element={<Recipe />}/>
-                <Route path="/Users" element={<User />}/>
-				<Route path="/login" element={<Login />}/>
+                <Route path="/" element={<Home setToken={setToken} />} />
+                <Route path="/recipes" element={<Recipe token={token} />}/>
+                {/*<Route path="/Users" element={<User />}/>
+				<Route path="/login" element={<Login />}/>*/}
             </Routes>
         </Router>
     );

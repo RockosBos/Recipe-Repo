@@ -50,6 +50,7 @@ router.post("/signup", function (req, res, next) {
 
 router.post("/login", async (req, res) => {
   try {
+	console.log(req.body);
     const user = await User.findOne({ email: req.body.email });
     const match = await bcrypt.compare(req.body.passWord, user.hashPassword);
     console.log(match);
