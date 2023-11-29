@@ -20,7 +20,7 @@
 	border-radius: 1rem;
 	
   }
-  .edit-recipe-form{
+  .delete-recipe-form{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

@@ -2,14 +2,11 @@ import React, { Component } from 'react'
 import {Recipe} from '../Models/Recipe'
 import "./CreateRecipeModal.css"
 import { createRecipeService } from '../Services/createRecipeService'
-
-const ModalData = {
-	isOpen: Boolean,
-	toggle: () => {},
-
-}
+import {useNavigate} from 'react-router-dom'
 
 const CreateRecipeModal = (props) => {
+
+	const navigate = useNavigate();
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -24,6 +21,7 @@ const CreateRecipeModal = (props) => {
 			(res) => {
 				if(res.ok){
 					alert("Recipe Created Successfully");
+					navigate("/");
 					props.toggle();
 				}
 			}

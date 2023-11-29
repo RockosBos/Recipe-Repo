@@ -7,8 +7,11 @@
 .create-recipe-button{
 	background-color: lightgreen;
 	border-radius: 5px;
+	width: 60vh;
+	height: 10vh;
 }
 .create-recipe-button-div{
 	display: flex;
 	justify-content: center;
+	padding-bottom: 2%;
 }

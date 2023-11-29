@@ -1,9 +1,8 @@
-export const createRecipeService = async ({Recipe, token}) => {
-	const body = JSON.stringify(Recipe);
-	console.log(body);
+export const deleteRecipeService = async ({recipe, token}) => {
+	const body = JSON.stringify(recipe);
 
 	
-	const res = await fetch('',
+	const res = await fetch('http://localhost:3000/raja/recipe/delete',
 		{
 			method: 'DELETE',
 			headers: {

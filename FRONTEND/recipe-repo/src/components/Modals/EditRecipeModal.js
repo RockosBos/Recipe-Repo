@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { editRecipeService } from '../Services/editRecipeService'
 import "./EditRecipeModal.css"
+import {useNavigate} from 'react-router-dom'
 
 const EditRecipeModal = (props) => {
+
+	const navigate = useNavigate();
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -18,6 +21,7 @@ const EditRecipeModal = (props) => {
 		await editRecipeService({Recipe, token}).then(
 			(res) => {
 				if(res.ok){
+					navigate("/");
 					props.toggle();
 				}
 			}

@@ -1,28 +1,29 @@
 import React, { Component } from 'react'
-import {Recipe} from '../Models/Recipe'
 
-import { createRecipeService } from '../Services/createRecipeService'
+import {deleteRecipeService} from '../Services/deleteRecipeService'
+import {useNavigate} from 'react-router-dom'
 
-const ModalData = {
-	isOpen: Boolean,
-	toggle: () => {},
-
-}
+import "./DeleteRecipeModal.css"
 
 const DeleteRecipeModal = (props) => {
+
+	const navigate = useNavigate();
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
 
-		const target = e.target;
+		const target = props.data;
 		const token = props.token;
 
-		Recipe.recipeTitle = target.title.value;
-		Recipe.recipeDescription = target.desc.value;
+		const recipe = {
+			recipeTitle: target.recipeTitle
+		}
 
-		await deleteRecipeService({Recipe, token}).then(
+		await deleteRecipeService({recipe, token}).then(
 			(res) => {
 				if(res.ok){
+					console.log(props);
+					navigate("/");
 					props.toggle();
 				}
 			}
@@ -36,7 +37,7 @@ const DeleteRecipeModal = (props) => {
 				<div className="overlay">
 					<div className="box">
 						<h1>Are you sure you would like to delete this recipe?</h1>
-						<form className="create-recipe-form" onSubmit={onSubmit}>
+						<form className="delete-recipe-form" onSubmit={onSubmit}>
 							<button>Delete</button>
 							<button onClick={props.toggle}>Cancel</button>
 						</form>

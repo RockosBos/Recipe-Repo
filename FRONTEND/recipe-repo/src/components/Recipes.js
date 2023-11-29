@@ -6,22 +6,10 @@ import useEditRecipeModal from './Hooks/useEditRecipeModal';
 import useDeleteRecipeModal from './Hooks/useDeleteRecipeModal';
 import useShareRecipeModal from './Hooks/useShareRecipeModal';
 import ShareRecipeModal from './Modals/ShareRecipeModal';
+import {reloadRecipeService} from './Services/reloadRecipeService'
 import "./Recipes.css"
 
 export default function Recipes(props) {
-
-	const DUMMY_RECIPES = [
-		{
-			recipeTitle: "#1 Recipe",
-			recipeDescription: "This is where I would put my recipe description!",
-		},
-		{
-			recipeTitle: "The other DUMMY recipe",
-			recipeDescription: "This is where I would put my other recipe description!",
-		}
-	];
-
-	const [result, setResult] = useState(DUMMY_RECIPES);
 	const [recipeData, setRecipeData] = useState(Recipe);
 
 	const {isOpen, toggle} = useEditRecipeModal();
@@ -40,7 +28,7 @@ export default function Recipes(props) {
 			  },
 			)
 			const json = await data.json();
-			setResult(json.userRecipe);
+			props.setResult(json.userRecipe);
 		}
 		api();
 	}, []);
@@ -52,16 +40,19 @@ export default function Recipes(props) {
 	}
 
 	async function openDeleteRecipeModal(props){
+		setRecipeData(props);
 		deleteToggle();
 	}
 
 	async function openShareRecipeModal(props){
 		setRecipeData(props);
 		shareToggle();
+		
 	}
 
+	console.log(props);
 
-	const loadedRecipes = result.map(Recipe => {
+	const loadedRecipes = props.Result.map(Recipe => {
 		return(
 			<>
 				
@@ -85,9 +76,9 @@ export default function Recipes(props) {
 	return (
 	  	<div>
 			<div className='modals'>
-				<EditRecipeModal token={props.token} isOpen={isOpen} toggle={toggle} data={recipeData}/>
-				<ShareRecipeModal token={props.token} isOpen={shareIsOpen} toggle={shareToggle} data={recipeData}/>
-				<DeleteRecipeModal token={props.token} isOpen={deleteIsOpen} toggle={deleteToggle} data={recipeData}/>
+				<EditRecipeModal token={props.token} isOpen={isOpen} toggle={toggle} data={recipeData} reload={reloadRecipeService} setResult={props.setResult}/>
+				<ShareRecipeModal token={props.token} isOpen={shareIsOpen} toggle={shareToggle} data={recipeData} reload={reloadRecipeService} setResult={props.setResult}/>
+				<DeleteRecipeModal token={props.token} isOpen={deleteIsOpen} toggle={deleteToggle} data={recipeData} reload={reloadRecipeService} setResult={props.setResult}/>
 			</div>
 			{loadedRecipes}
 		</div>
