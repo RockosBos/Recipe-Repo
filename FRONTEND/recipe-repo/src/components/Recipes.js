@@ -17,20 +17,22 @@ export default function Recipes(props) {
 	const {deleteIsOpen, deleteToggle} = useDeleteRecipeModal();
 
 	useEffect(() => {
-		const api = async () => {
-			const data = await fetch("http://localhost:3000/raja/recipe/get", 
-			{
-				method: 'GET',
-				headers: {
-					"Content-Type": "application/json",
-					"Authorization": "Bearer " + props.token,
-				},
-			  },
-			)
-			const json = await data.json();
-			props.setResult(json.userRecipe);
+		if(props.token){
+			const api = async () => {
+				const data = await fetch("http://localhost:3000/raja/recipe/get", 
+				{
+					method: 'GET',
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": "Bearer " + props.token,
+					},
+				  },
+				)
+				const json = await data.json();
+				props.setResult(json.userRecipe);
+			}
+			api();
 		}
-		api();
 	}, []);
 
 	async function openEditRecipeModal(props){
@@ -50,12 +52,10 @@ export default function Recipes(props) {
 		
 	}
 
-	console.log(props);
 
 	const loadedRecipes = props.Result.map(Recipe => {
 		return(
 			<>
-				
 				<div className='card'>
 					<div className='card-title'>
 						<p>{Recipe.recipeTitle}</p>
@@ -80,7 +80,17 @@ export default function Recipes(props) {
 				<ShareRecipeModal token={props.token} isOpen={shareIsOpen} toggle={shareToggle} data={recipeData} reload={reloadRecipeService} setResult={props.setResult}/>
 				<DeleteRecipeModal token={props.token} isOpen={deleteIsOpen} toggle={deleteToggle} data={recipeData} reload={reloadRecipeService} setResult={props.setResult}/>
 			</div>
-			{loadedRecipes}
+			{(props.Result.length != 0) && loadedRecipes}
+			{(!props.token) && 
+				<>
+					<p>Please log in before viewing recipes!</p>
+				</>
+			}
+			{(props.Result.length == 0 && props.token) && 
+				<>
+					<p>You have no Recipes, please create some!</p>
+				</>
+			}
 		</div>
 	)
   

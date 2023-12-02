@@ -8,9 +8,9 @@ import {
 import { useState } from "react";
 import Navbar from "./shared/Navigation/NavBar";
 import Home from "./pages/Home";
-import User from "./pages/User";
+import Contact from "./pages/Contact";
 import Recipe from "./pages/Recipe";
-import Login from "./pages/Login";
+import OpenAI from "./pages/OpenAI";
 
 
 function App() {
@@ -29,8 +29,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home setToken={setToken} />} />
                 <Route path="/recipes" element={<Recipe token={token} />}/>
-                {/*<Route path="/Users" element={<User />}/>
-				<Route path="/login" element={<Login />}/>*/}
+                <Route path="/contact" element={<Contact />}/>
+				<Route path="/openai" element={<OpenAI />}/>
             </Routes>
         </Router>
     );

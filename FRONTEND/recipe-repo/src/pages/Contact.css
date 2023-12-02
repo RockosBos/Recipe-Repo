@@ -1,0 +1,35 @@
+.addNewContactDiv{
+	display: flex;
+	justify-content: center;
+	align-items:normal;
+}
+
+.addNewContactForm{
+	display: inline-block;
+	justify-content: center;
+}
+
+.AddContactName{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.AddContactEmail{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.AddContactButton{
+	display: inline-block;
+	vertical-align: bottom;
+	
+}
+
+.elements{
+	display: block;
+}
+
+.buttonElement{
+	background-color: lightgreen;
+	color: white;
+}

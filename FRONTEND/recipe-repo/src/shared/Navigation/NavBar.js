@@ -12,8 +12,8 @@ export default class NavBar extends Component {
 					<img src={logo} style={{display: 'flex-box', height: '100%', padding: '0%', textDecoration: 'none'}} />
 				</NavLink>
                 <NavLink to="/recipes" style={{ textDecoration: 'none', color: "#FFFFFF" }}><h1>Recipes</h1></NavLink>
-                {/*<NavLink to="/users" style={{ textDecoration: 'none', color: "#FFFFFF" }}><h1>Users</h1></NavLink>
-				<NavLink to="/login" style={{ textDecoration: 'none', color: "#FFFFFF"}}><h1>Sign In</h1></NavLink>*/}
+                <NavLink to="/contact" style={{ textDecoration: 'none', color: "#FFFFFF" }}><h1>Contacts</h1></NavLink>
+				<NavLink to="/openAI" style={{ textDecoration: 'none', color: "#FFFFFF"}}><h1>Open AI</h1></NavLink>
             </Nav>
       </div>
     )
