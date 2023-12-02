@@ -22,14 +22,33 @@
 .AddContactButton{
 	display: inline-block;
 	vertical-align: bottom;
-	
+	border-radius: 5px;
 }
 
 .elements{
 	display: block;
+	margin-right: 5%;
+	border-radius: 5px;
 }
 
 .buttonElement{
+	border-radius: 5px;
 	background-color: lightgreen;
 	color: white;
+}
+
+.contact{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.edit-button{
+
+}
+
+.delete-button{
+	background-color: red;
+	color: white;
+	border-radius: 5px;
 }
