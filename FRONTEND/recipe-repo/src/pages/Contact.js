@@ -1,6 +1,7 @@
 import React, { Component, useEffect } from 'react'
 
 import "./Contact.css"
+import editIcon from "../assets/contact-edit-icon.png"
 
 export default function Contact(){
 
@@ -46,12 +47,12 @@ export default function Contact(){
 					<div className='contact-title'>
 						<p>{Contact.contactName}</p>
 					</div>
-					<div className='contact-emails'>
+					<div className='contact-email'>
 						<p>{Contact.contactEmail}</p>
 					</div>
 					<div className='contact-buttons'>
-						<button className='edit-button' onClick={() => {}}>Edit</button>
-						<button className='delete-button' onClick={() => {}}>-</button>
+						<button className='edit-button' onClick={() => {}}><img src={editIcon} alt='Edit' className='edit-button-image'/></button>
+						<button className='delete-button' onClick={() => {}}>X</button>
 					</div>
 				</div>
 			</>

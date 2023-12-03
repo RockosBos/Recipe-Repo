@@ -43,8 +43,21 @@
 	justify-content: center;
 }
 
-.edit-button{
+.contact-title{
+	margin-right: 5%;
+}
 
+.contact-email{
+	margin-right: 5%;
+}
+
+.edit-button{
+	border-radius: 5px;
+}
+
+.edit-button-image{
+	height: 10px;
+	width: 10px;
 }
 
 .delete-button{
