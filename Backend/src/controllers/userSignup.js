@@ -232,6 +232,30 @@ router.post("/recipe/share", auth, (req, res) => {
     });
 });
 
+router.post("/recipe/update", auth, async(req, res) => {
+  const userData = req.user;
+  console.log(userData);
+  console.log(req.body);
+  try{
+   const existingRecipe = await UserRecipe.findOne({recipeTitle: req.body.recipeTitle});
+
+   if(!existingRecipe){
+    return res.status(404).json({error: "recipe not found"});
+   }
+    existingRecipe.recipeTitle = req.body.recipeTitle;
+    existingRecipe.recipeDescription = req.body.recipeDescription;
+
+    const updaterecipe = await existingRecipe.save();
+
+    res.status(200).json(updaterecipe);
+  }catch (e) {
+    res.status(500).json({error: e.message});
+  }
+
+   
+
+})
+
 router.get("/profile", function (req, res, next) {
   console.log("profile");
   User.findOne({ unique_id: req.session.userId }, function (err, data) {
