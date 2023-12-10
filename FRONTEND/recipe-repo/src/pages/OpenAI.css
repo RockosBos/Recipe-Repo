@@ -1,0 +1,42 @@
+
+.open-ai-form{
+	display: flex;
+  	justify-content: center;
+	align-items: center;
+	width: 60%;
+	background-color: lightgray;
+	padding-bottom: 3%;
+	padding-top: 3%;
+	border-radius: 50px;
+	margin-left: 20%;
+}
+
+.openAI-page{
+	
+}
+
+.response{
+	display: flex;
+  	justify-content: center;
+	align-items: center;
+	width: 60%;
+	background-color: lightgray;
+	padding-bottom: 3%;
+	padding-top: 3%;
+	border-radius: 50px;
+	margin-left: 20%;
+}
+
+.buttonElement{
+	color: black;
+	margin-left: 5px;
+}
+
+.promptBoxLabel{
+	text-align: center;
+	margin-right: 10px;
+}
+
+.prompt{
+	text-align: center;
+}

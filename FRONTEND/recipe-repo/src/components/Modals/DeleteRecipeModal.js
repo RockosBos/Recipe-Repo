@@ -22,7 +22,6 @@ const DeleteRecipeModal = (props) => {
 		await deleteRecipeService({recipe, token}).then(
 			(res) => {
 				if(res.ok){
-					console.log(props);
 					navigate("/");
 					props.toggle();
 				}

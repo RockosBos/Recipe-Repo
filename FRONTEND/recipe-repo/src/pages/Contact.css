@@ -1,0 +1,67 @@
+.addNewContactDiv{
+	display: flex;
+	justify-content: center;
+	align-items:normal;
+}
+
+.addNewContactForm{
+	display: inline-block;
+	justify-content: center;
+}
+
+.AddContactName{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.AddContactEmail{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.AddContactButton{
+	display: inline-block;
+	vertical-align: bottom;
+	border-radius: 5px;
+}
+
+.elements{
+	display: block;
+	margin-right: 5%;
+	border-radius: 5px;
+}
+
+.buttonElement{
+	border-radius: 5px;
+	background-color: lightgreen;
+	color: white;
+}
+
+.contact{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.contact-title{
+	margin-right: 5%;
+}
+
+.contact-email{
+	margin-right: 5%;
+}
+
+.edit-button{
+	border-radius: 5px;
+}
+
+.edit-button-image{
+	height: 10px;
+	width: 10px;
+}
+
+.delete-button{
+	background-color: red;
+	color: white;
+	border-radius: 5px;
+}
