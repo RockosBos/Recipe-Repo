@@ -39,7 +39,7 @@ const EditRecipeModal = (props) => {
 							
 							<div className="field">
 								<label htmlFor="title">New Recipe Title:</label>
-								<input id="title" defaultValue={props.data.recipeTitle}/>
+								<input id="title" readOnly={true} defaultValue={props.data.recipeTitle}/>
 							</div>
 							<div className="field">
 								<label htmlFor="desc">New Recipe Description:</label>

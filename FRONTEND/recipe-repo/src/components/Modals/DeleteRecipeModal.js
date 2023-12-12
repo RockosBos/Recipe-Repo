@@ -35,7 +35,7 @@ const DeleteRecipeModal = (props) => {
 			{props.isOpen && (
 				<div className="overlay">
 					<div className="box">
-						<h1>Are you sure you would like to delete this recipe?</h1>
+						<h1 className='header'>Are you sure you would like to delete this recipe?</h1>
 						<form className="delete-recipe-form" onSubmit={onSubmit}>
 							<button>Delete</button>
 							<button onClick={props.toggle}>Cancel</button>
